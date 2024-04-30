@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block title %}Thanks - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header"> Ön-Test yanıtlarınız doğrultusunda hazırlanan Eğitim Slaytlarını Tıklayarak izleyiniz !... {{ survey.title }} </h1>
+    <div class="sub header"> ... Eğitim İçeriği ...</div>
+    <ul>
+        {% for yanlis in yanlislar %}
+        <li>
+            <a id="kayip_{{ loop.index }}" href="{{yanlis.1}}" target="_blank">
+                <div class="ui button" data-index="{{ loop.index }}">{{ yanlis.0 }}</div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a id="tum_yanislari_izledim" href="http://127.0.0.1:8000/surveys/2/start/" class="ui button" style="display: none;">TÜM YANSILARI İZLEDİM</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var buttons = document.querySelectorAll('.ui.button');
+    var lastButton = document.getElementById('tum_yanislari_izledim');
+    var clickedButtons = 0;
+
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            this.style.display = 'none'; // Hide clicked button
+            clickedButtons++;
+
+            // Check if all buttons except the last one have been clicked
+            if (clickedButtons === buttons.length - 1) {
+                lastButton.style.display = 'block'; // Show the last button
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

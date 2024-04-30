@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block title %}Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">Eğitim programımıza hoş geldiniz.
+        <div class="sub header">Ankete hoş geldiniz
+</div>
+    </h1>
+    <a href="{% url 'login' %}">
+        <div class="ui primary button">Başlat</div>
+    </a>
+</div>
+{% endblock %}
+
+{% block image_url %} "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4AocE_njc-pZ3m5dwULBjisDABybISQW6a5ZRISa7CQ&s" {% endblock %}

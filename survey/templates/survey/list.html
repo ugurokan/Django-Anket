@@ -1,0 +1,64 @@
+{% extends "_base.html" %}
+{% block title %}List - Surveys{% endblock %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">Hoş geldin. {{ request.user.username }}</h1>
+    <a href="{% url 'survey-create' %}">
+        <div class="ui primary button">Yeni anket oluştur</div>
+    </a>
+</div>
+<div class="ui center aligned basic very padded segment">
+    {% if surveys %}
+    <h2 class="ui header">ANKETLER</h2>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Oluşturma Tarihi</th>
+            <th>Eylem</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for survey in surveys %}
+        <tr>
+            <td>{{ survey.title }}</td>
+            <td>{{ survey.created_at }}</td>
+            <td>
+                {% if survey.is_active %}
+                <a href="{% url 'survey-detail' survey.pk %}">
+                    <div class="ui button">GÖRÜNTÜLE</div>
+                </a>
+                {% else %}
+                <a href="{% url 'survey-edit' survey.pk %}">
+                    <div class="ui button">DÜZENLE</div>
+                </a>
+                {% endif %}
+                <form method="post" action="{% url 'survey-delete' survey.pk %}" style="display: inline-block;">
+                    {% csrf_token %}
+                    <button class=" ui button">SİL</button>
+                </form>
+                <form method="post" action="{% url 'download' survey.pk %}" style="display: inline-block;">
+                    {% csrf_token %}
+                    <button class=" ui button">İNDİR</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="ui header">Senin anketin
+        <div class="sub header">Henüz Anket Yok. Yeni Anket Oluşturun.</div>
+    </h2>
+    {% endif %}
+
+</div>
+{% else %}
+    <a href="http://127.0.0.1:8000/surveys/1/start/">
+        <div class="ui button">Devam</div>
+    </a>
+{% endif %}
+{% endblock %}
+{% block image_url %} "https://png.pngtree.com/png-vector/20240129/ourmid/pngtree-pikachu-goes-to-party-png-image_11560456.png" {% endblock %}

@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block title %}Thanks - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">"Ağız ve Diş Sağlığı Eğitim Programı Geliştirme Çalışması; İzmir İli Kemalpaşa İlçesi Örneği" başlıklı eğitimimiz sona ermiştir. Katıldığınız için teşekkür ederiz.</h1>
+</div>
+<div style="text-align: center;">
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">ÇIKIŞ</button>
+    </form>
+</div>
+{% endblock %}
