@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block title %}Thanks - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header"> Ön-Test yanıtlarınız doğrultusunda hazırlanan Eğitim Slaytlarını Tıklayarak izleyiniz !... {{ survey.title }} </h1>
+    <div class="sub header"> ... Eğitim İçeriği ...</div>
+    <ul>
+
+        {% for yanlis in yanlislar %}
+        <li>
+            <a id="kayip" href="{{yanlis.1}}" target="_blank">
+
+                <div class="ui button">{{yanlis.0}}</div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="http://127.0.0.1:8000/surveys/2/start/">
+
+        <div class="ui button">TÜM YANSILARI İZLEDİM</div>
+    </a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var buttons = document.querySelectorAll('.ui.button');
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            this.style.display = 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

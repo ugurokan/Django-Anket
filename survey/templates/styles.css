@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  height: 1000px; /* Adjust this height based on your content */
+}
+
+.floating-png {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  width: 100px; /* Adjust the width of your PNG */
+  height: auto; /* Automatically adjust height to maintain aspect ratio */
+  z-index: 9999; /* Ensure it stays above other elements */
+}

@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block title %}Start - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">{{ survey.title }}
+        <div class="sub header">Değerli katılımcımız,
+	Katılmış olduğunuz eğitim programının kısa süreli etkisini değerlendirmek amacıyla araştırmacılar tarafından Memnuniyet Anketi hazırlanmıştır. Bu anket, görüşleriniz doğrultusunda daha iyi bir öğrenme ortamı hazırlamak amacıyla uygulanmaktadır. Anket verileri araştırmamızda kullanılacaktır. Sorulara vereceğiniz eksiksiz ve tarafsız cevaplar sizlerin beklentilerini karşılamaya yönelik düzenlemeler yapmamıza, eğitimlerimizin gelişmesine olanak sağlayacaktır.
+ </div>
+    </h1>
+    <form method="post" action="{% url 'survey-start' survey.pk %}" style="display: inline-block;">
+        {% csrf_token %}
+        <button type="submit" class="ui primary button">Anketi Başlat
+    </form>
+</div>
+{% endblock %}
